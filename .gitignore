@@ -1,0 +1,17 @@
+/.gradle/
+/.metadata/
+/.settings/
+/bin/
+/build/
+/eclipse/
+/gradle/
+/.classpath
+/.project
+/build.gradle
+/CREDITS-fml.txt
+/gradlew.bat
+/gradlew
+/forge-1.7.10-10.13.4.1566-1.7.10-changelog.txt
+/LICENSE-fml.txt
+/MinecraftForge-Credits.txt
+/MinecraftForge-License.txt

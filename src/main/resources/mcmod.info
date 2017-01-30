@@ -1,0 +1,16 @@
+[
+{
+  "modid": "DraconicAge",
+  "name": "Draconic Age",
+  "description": "The Age of the Dragons be begun!\nPrepare for being dominated by the dragons! ",
+  "version": "1.0.0",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CodeForce"],
+  "credits": "to everyone who helped to this mod to you!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
