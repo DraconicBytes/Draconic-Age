@@ -49,6 +49,13 @@ enum MobState {
 	Attacking
 }
 
+/*
+ * TODO: Implement new AI system on this mob.
+ * 2. Fix Drifting during flight
+ * 3. Improve wild behaviour
+ * 4. Implement Landing + Lifting off
+ * 5. Make dragon rideable 
+*/
 public class EntityDragon extends EntityLiving implements IBossDisplayData, IEntityMultiPart, IMob
 {
 
@@ -87,7 +94,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
 	public double				territoryRange	= 40;
 	private int					attackTrigger	= 0;
 	
-	public boolean				tamed = true;
+	public boolean				tamed = false;
 	public MobState				mobState = MobState.Alerted;
 	public FlyingState			flyingState = FlyingState.Airbourne;
 
