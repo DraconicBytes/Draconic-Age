@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.DraconicAge.DAItems;
 import com.DraconicAge.Entity.Projectiles.EntityGuidedFireball;
+import com.DraconicAge.lib.FlyingHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEndPortal;
@@ -158,26 +159,12 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
 		return adouble;
 	}
 
-	private float smoothAngle( float flAngle, float flTargetAngle, float flFactor )
-	{
-		float f3 = MathHelper.wrapAngleTo180_float( flTargetAngle - flAngle );
-
-		if ( f3 > flFactor )
-			f3 = flFactor;
-
-		if ( f3 < -flFactor )
-			f3 = -flFactor;
-
-		return flAngle + f3;
-
-	}
-	
 	private void SetFlightDirection(double dX, double dY, double dZ) {
-		float flYaw = ( float ) ( Math.atan2( dZ, dX ) * 180.0D / Math.PI );
+		float flYaw = ( float ) ( Math.atan2( dX, dZ ) * 180.0D / Math.PI ) + 90;
 		float flPitch = ( float ) -( Math.atan2( dY, Math.sqrt( dX * dX + dZ * dZ ) ) * 180.0D / Math.PI );
 
-		this.rotationPitch = this.smoothAngle( this.rotationPitch, flPitch, 10.0F );
-		this.rotationYaw = this.smoothAngle( this.rotationYaw, flYaw + 90, 10.0F );
+		this.rotationPitch = FlyingHelper.smoothAngle( this.rotationPitch, flPitch, 10.0F );
+		this.rotationYaw = FlyingHelper.smoothAngle( this.rotationYaw, flYaw, 10.0F );
 	}
 	
 	private void ManageFlightVelocity() {
@@ -199,7 +186,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
 		// Slow down when taking curves and maintain speed limit
 		Vec3 vec31 = Vec3.createVectorHelper( this.motionX, this.motionY, this.motionZ ).normalize( );
 		Vec3 vec32 = Vec3.createVectorHelper( ( double ) MathHelper.sin( this.rotationYaw * ( float ) Math.PI / 180.0F ), this.motionY, ( double ) ( -MathHelper.cos( this.rotationYaw * ( float ) Math.PI / 180.0F ) ) ).normalize( );
-		float f9 = ( float ) ( vec31.dotProduct( vec32 ) + 1.0D ) / 2.0F;
+		float f9 = ( float ) ( vec31.dotProduct( vForward ) + 1.0D ) / 2.0F;
 		f9 = 0.8F + 0.15F * f9;
 
 		this.motionX *= ( double ) f9;
@@ -427,6 +414,7 @@ public class EntityDragon extends EntityLiving implements IBossDisplayData, IEnt
 					this.spawnPos.zCoord - this.posZ);
 		} else
 		{
+			
 			SetFlightDirection( 
 					this.motionX,
 					this.motionY,

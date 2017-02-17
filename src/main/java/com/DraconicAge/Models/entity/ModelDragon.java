@@ -242,18 +242,18 @@ public class ModelDragon extends ModelBase
      * or subtracts 360 degrees, so that the appearance is the same, although the numbers are then simplified to range -
      * 180 to 180
      */
-    private float updateRotations(double p_78214_1_)
+    private float updateRotations(double angle)
     {
-        while (p_78214_1_ >= 180.0D)
+        while (angle >= 180.0D)
         {
-            p_78214_1_ -= 360.0D;
+            angle -= 360.0D;
         }
 
-        while (p_78214_1_ < -180.0D)
+        while (angle < -180.0D)
         {
-            p_78214_1_ += 360.0D;
+            angle += 360.0D;
         }
 
-        return (float)p_78214_1_;
+        return (float)angle;
     }
 }
